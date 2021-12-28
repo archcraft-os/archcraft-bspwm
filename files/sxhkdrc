@@ -152,6 +152,10 @@ super + {Tab,grave}
 super + {_,shift + }{1-8}
 	bspc {desktop -f,node -d} '^{1-8}'
 
+# Send focused window to previous/next workspace
+ctrl + alt + {_,shift + }{Left,Right}
+	bspc {desktop -f,node -d} {prev.local,next.local}
+
 # Expanding windows
 super + control + {Left,Right,Up,Down}
 	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
