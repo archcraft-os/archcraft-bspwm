@@ -111,13 +111,6 @@ bspc rule -a stalonetray state=floating manage=off
 # Kill if already running
 killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager
 
-# Lauch notification daemon
-dunst \
--geom "280x50-10+42" -frame_width "1" -font "Iosevka Custom 9" \
--lb "$BACKGROUND" -lf "$FOREGROUND" -lfr "$BLUE" \
--nb "$BACKGROUND" -nf "$FOREGROUND" -nfr "$BLUE" \
--cb "$BACKGROUND" -cf "$RED" -cfr "$RED" &
-
 # Lauch xsettingsd daemon
 xsettingsd &
 
@@ -149,6 +142,7 @@ exec mpd &
 bspcolors
 bspbar
 bspcomp
+bspdunst
 bspfloat &
 
 ## Welcome-App-Run-Once

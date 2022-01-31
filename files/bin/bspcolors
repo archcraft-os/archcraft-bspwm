@@ -101,11 +101,35 @@ bsprofi () {
 	EOF
 }
 
+bspdunst () {
+	sed -i '/urgency_low/Q' "$HOME"/.config/bspwm/dunstrc
+	cat >> "$HOME"/.config/bspwm/dunstrc <<- _EOF_
+		[urgency_low]
+		timeout = 2
+		background = "${BACKGROUND}"
+		foreground = "${FOREGROUND}"
+		frame_color = "${BLUE}"
+
+		[urgency_normal]
+		timeout = 5
+		background = "${BACKGROUND}"
+		foreground = "${FOREGROUND}"
+		frame_color = "${BLUE}"
+
+		[urgency_critical]
+		timeout = 0
+		background = "${BACKGROUND}"
+		foreground = "${FOREGROUND}"
+		frame_color = "${RED}"
+	_EOF_
+}
+
 main () {
 	getcolors
 	bspbar
 	bspterm
 	bsprofi
+	bspdunst
 }
 
 main

@@ -46,6 +46,7 @@ package() {
 	chmod +x "$_bspwmdir"/themes/set-theme
 
 	install -Dm 755 bspwmrc   			"$_bspwmdir"/bspwmrc
+	install -Dm 644 dunstrc   			"$_bspwmdir"/dunstrc
 	install -Dm 644 picom.conf   		"$_bspwmdir"/picom.conf
 
 	# Copy keybindings config file
