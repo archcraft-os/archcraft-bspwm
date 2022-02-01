@@ -1,0 +1,5 @@
+post_install() {
+	echo '*************************'
+	echo -e "\n[*] Configurations for BSPWM is updated.\nPlease copy the new config files manually from '/etc/skel/.config/bspwm' before you login into bspwm.\n"
+	echo '*************************'
+}
