@@ -6,6 +6,13 @@
 ## Environtment
 export PATH="${PATH}:$HOME/.config/bspwm/bin"
 
+# -------------------- Solve Java Apps Issues (e.g. Intellij IDEs like PyCharm, CLion, etc). -------------------- 
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# -------------------- Solve Java Apps Issues (e.g. Intellij IDEs like PyCharm, CLion, etc). -------------------- 
+
+
 ## Get colors from .Xresources -------------------------------#
 xrdb ~/.Xresources
 getcolors() {
@@ -137,6 +144,9 @@ bash $HOME/.fehbg
 
 # Start mpd
 exec mpd &
+
+# enable num lock
+numlockx &
 
 # Start bspwm scripts
 bspcolors
