@@ -6,7 +6,7 @@
 DIR="$HOME/.config/bspwm"
 rofi_command="rofi -theme $DIR/rofi/themes/screenshot.rasi"
 
-time=`date +%Y-%m-%d-%I-%M-%S`
+time=`date +%Y-%m-%d-%H-%M-%S`
 geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
 dir="`xdg-user-dir PICTURES`/Screenshots"
 file="Screenshot_${time}_${geometry}.png"
