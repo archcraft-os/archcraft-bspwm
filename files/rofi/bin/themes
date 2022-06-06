@@ -25,17 +25,18 @@ theme_14=" Nord"
 theme_15=" Nordic"
 theme_16=" Pastel"
 theme_17=" Rick"
-theme_18=" Spark"
-theme_19=" Tealize"
-theme_20=" Wave"
+theme_18=" Slime"
+theme_19=" Spark"
+theme_20=" Tealize"
+theme_21=" Wave"
 
 # Variable passed to rofi
 options="$theme_1\n$theme_2\n$theme_3\n$theme_4\n$theme_5\
 \n$theme_6\n$theme_7\n$theme_8\n$theme_9\n$theme_10\
 \n$theme_11\n$theme_12\n$theme_13\n$theme_14\n$theme_15\
-\n$theme_16\n$theme_17\n$theme_18\n$theme_19\n$theme_20"
+\n$theme_16\n$theme_17\n$theme_18\n$theme_19\n$theme_20\n$theme_21"
 
-chosen="$(echo -e "$options" | $rofi_command -p "Available themes : (20)" -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | $rofi_command -p "Available themes : (21)" -dmenu -selected-row 0)"
 case $chosen in
     $theme_1)
         bash ${BSP}/set-theme  'beach.jpg' 'beach' 'Arc-Lighter' 'Arc-Circle' 'Fluent'
@@ -89,12 +90,15 @@ case $chosen in
         bash ${BSP}/set-theme  'rick.jpg' 'rick' 'Rick' 'Zafiro' 'Vimix-dark'
         ;;
     $theme_18)
-        bash ${BSP}/set-theme  'spark.jpg' 'spark' 'Spark' 'Luv-Folders' 'Vimix'
+        bash ${BSP}/set-theme  'slime.jpg' 'slime' 'Slime' 'Luv-Folders' 'Qogirr-dark'
         ;;
     $theme_19)
-        bash ${BSP}/set-theme  'tealize.png' 'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Vimix'
+        bash ${BSP}/set-theme  'spark.jpg' 'spark' 'Spark' 'Luv-Folders' 'Vimix'
         ;;
     $theme_20)
+        bash ${BSP}/set-theme  'tealize.png' 'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Vimix'
+        ;;
+    $theme_21)
         bash ${BSP}/set-theme  'wave.jpg' 'wave' 'Wave' 'Luv-Folders-Dark' 'Vimix'
         ;;
 esac
