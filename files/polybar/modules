@@ -85,7 +85,7 @@ ramp-foreground = ${color.MAGENTA}
 [module/brightness]
 type = internal/backlight
 
-card = ${system.graphics_card}
+card = ${system.sys_graphics_card}
 
 enable-scroll = true
 
@@ -113,8 +113,8 @@ type = internal/battery
 
 full-at = 99
 
-battery = ${system.battery}
-adapter = ${system.adapter}
+battery = ${system.sys_battery}
+adapter = ${system.sys_adapter}
 
 poll-interval = 2
 time-format = %H:%M
@@ -305,7 +305,7 @@ icon-next-foreground = ${color.CYAN}
 ; If you use both a wired and a wireless network, add both modules in config.
 [module/ethernet]
 type = internal/network
-interface = ${system.network_interface}
+interface = ${system.sys_network_interface}
 
 interval = 1.0
 accumulate-stats = true
@@ -328,7 +328,7 @@ label-disconnected = "%{A1:networkmanager_dmenu &:}Offline%{A}"
 
 [module/network]
 type = internal/network
-interface = ${system.network_interface}
+interface = ${system.sys_network_interface}
 
 interval = 1.0
 

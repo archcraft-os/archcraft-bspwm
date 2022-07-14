@@ -2,14 +2,14 @@
 /* Everyone is permitted to copy and distribute copies of this file under GNU-GPL3 */
 
 configuration {
-    font:                           "Iosevka 10";
     show-icons:                     false;
     display-window: 				"Windows :";
-    window-format: 					"{w}  ·  {c}  ·  {t}";
+    window-format: 					"{w} · {c} · {t}";
     disable-history:                false;
 	click-to-exit: 					true;
 }
 
+@import "font.rasi"
 @import "colors.rasi"
 
 window {

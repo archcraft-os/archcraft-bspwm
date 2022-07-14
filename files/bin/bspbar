@@ -20,16 +20,16 @@ get_values() {
 ## Write values to `system` file
 set_values() {
 	if [[ "$ADAPTER" ]]; then
-		sed -i -e "s/adapter = .*/adapter = $ADAPTER/g" 						${SFILE}
+		sed -i -e "s/sys_adapter = .*/sys_adapter = $ADAPTER/g" 						${SFILE}
 	fi
 	if [[ "$BATTERY" ]]; then
-		sed -i -e "s/battery = .*/battery = $BATTERY/g" 						${SFILE}
+		sed -i -e "s/sys_battery = .*/sys_battery = $BATTERY/g" 						${SFILE}
 	fi
 	if [[ "$CARD" ]]; then
-		sed -i -e "s/graphics_card = .*/graphics_card = $CARD/g" 				${SFILE}
+		sed -i -e "s/sys_graphics_card = .*/sys_graphics_card = $CARD/g" 				${SFILE}
 	fi
 	if [[ "$INTERFACE" ]]; then
-		sed -i -e "s/network_interface = .*/network_interface = $INTERFACE/g" 	${SFILE}
+		sed -i -e "s/sys_network_interface = .*/sys_network_interface = $INTERFACE/g" 	${SFILE}
 	fi
 }
 

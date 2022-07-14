@@ -5,4 +5,4 @@
 
 DIR="$HOME/.config/bspwm"
 
-rofi -no-lazy-grab -show window -theme $DIR/rofi/themes/window.rasi
+rofi -no-lazy-grab -show window -theme "$DIR"/rofi/themes/window.rasi

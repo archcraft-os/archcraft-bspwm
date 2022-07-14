@@ -18,10 +18,10 @@ configuration {
     display-combi: 					"";
 }
 
+@import "font.rasi"
 @import "colors.rasi"
 
 * {
-    font:                           "Iosevka 10";
     background-color:             	@background;
 }
 

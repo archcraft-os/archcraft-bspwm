@@ -2,31 +2,58 @@
 
 ## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+##
+## BSPWM config file for Archcraft
 
-## Environtment
+## General ---------------------------------------------------#
+
+## Bspwm config directory
+BSPDIR="$HOME/.config/bspwm"
+
+## Export bspwm/bin dir to PATH
 export PATH="${PATH}:$HOME/.config/bspwm/bin"
 
-## Java Applications
-wmname LG3D
+## Run java applications without issues
 export _JAVA_AWT_WM_NONREPARENTING=1
+#wmname LG3D
 
-## Get colors from .Xresources -------------------------------#
-xrdb ~/.Xresources
-getcolors() {
-	FOREGROUND=$(xrdb -query | grep 'foreground:'| awk '{print $NF}')
-	BACKGROUND=$(xrdb -query | grep 'background:'| awk '{print $NF}')
-	BLACK=$(xrdb -query | grep 'color0:'| awk '{print $NF}')
-	RED=$(xrdb -query | grep 'color1:'| awk '{print $NF}')
-	GREEN=$(xrdb -query | grep 'color2:'| awk '{print $NF}')
-	YELLOW=$(xrdb -query | grep 'color3:'| awk '{print $NF}')
-	BLUE=$(xrdb -query | grep 'color4:'| awk '{print $NF}')
-	MAGENTA=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
-	CYAN=$(xrdb -query | grep 'color6:'| awk '{print $NF}')
-	WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
-}
-getcolors
+## Current theme ---------------------------------------------#
+
+## Load current theme files to get colors for bspwm
+source "$BSPDIR"/themes/current.bash
+
+## Get the wallpaper from theme file
+CURRENT_WALLPAPER="$wallpaper"
+
+## Get the colors from theme file
+FOREGROUND="$foreground"
+BACKGROUND="$background"
+CURSOR="$cursor"
+BLACK="$color0"
+RED="$color1"
+GREEN="$color2"
+YELLOW="$color3"
+BLUE="$color4"
+MAGENTA="$color5"
+CYAN="$color6"
+WHITE="$color7"
+ALTBLACK="$color8"
+ALTRED="$color9"
+ALTGREEN="$color10"
+ALTYELLOW="$color11"
+ALTBLUE="$color12"
+ALTMAGENTA="$color13"
+ALTCYAN="$color14"
+ALTWHITE="$color15"
+
+## Bspwm appearance
+CURRENT_BORDER='1'
+CURRENT_GAP='10'
+CURRENT_SRATIO='0.50'
 
 ## Configurations --------------------------------------------#
+
+## Manager Workspaces
 workspaces() {
 	name=1
 	for monitor in `bspc query -M`; do
@@ -37,9 +64,10 @@ workspaces() {
 }
 workspaces
 
-bspc config border_width 1
-bspc config window_gap 10
-bspc config split_ratio 0.50
+## Apply bspwm configurations
+bspc config border_width "$CURRENT_BORDER"
+bspc config window_gap "$CURRENT_GAP"
+bspc config split_ratio "$CURRENT_SRATIO"
 
 bspc config focused_border_color "$BLUE" 
 bspc config normal_border_color "$BACKGROUND"
@@ -52,47 +80,50 @@ bspc config paddingless_monocle true
 bspc config single_monocle false
 bspc config focus_follows_pointer true
 
+## Manage all the unmanaged windows remaining from a previous session.
+bspc wm --adopt-orphans
+
 ## Window rules ----------------------------------------------#
 
 # remove all rules first
 bspc rule -r *:*
 
-# 1 > terminal
+## 1 > terminal (always open terminal on workspace-1)
 bspc rule -a Alacritty desktop='^1' follow=on focus=on
 bspc rule -a Xfce4-terminal desktop='^1' follow=on focus=on
 
-# 2 > web
+## 2 > web (always open web browser on workspace-2)
 bspc rule -a firefox desktop='^2' follow=on focus=on
 bspc rule -a chromium desktop='^2' follow=on focus=on
 
-# 3 > files
+## 3 > files (always open file manager on workspace-3)
 declare -a files=(Pcmanfm Thunar qBittorrent)
 for i in ${files[@]}; do
    bspc rule -a $i desktop='^3' follow=on focus=on; done
 
-# 4 > code
+## 4 > code (always open editors on workspace-4)
 declare -a code=(Geany code-oss)
 for i in ${code[@]}; do
    bspc rule -a $i desktop='^4' follow=on focus=on; done
 
-# 5 > office and docs
+## 5 > office and docs (always open office/doc apps on workspace-5)
 declare -a office=(Gucharmap Atril Evince \
 libreoffice-writer libreoffice-calc libreoffice-impress \
 libreoffice-startcenter libreoffice Soffice *:libreofficedev *:soffice)
 for i in ${office[@]}; do
    bspc rule -a $i desktop='^5' follow=on focus=on; done
 
-# 6 > Communication
+## 6 > communication (always open communication apps on workspace-6)
 declare -a comm=(Thunderbird TelegramDesktop Hexchat)
 for i in ${comm[@]}; do
    bspc rule -a $i desktop='^6' follow=on focus=on; done
 
-# 7 > media
+## 7 > media (always open media apps on workspace-7)
 declare -a media=(Audacity Music MPlayer Lxmusic Inkscape Gimp-2.10 obs)
 for i in ${media[@]}; do
    bspc rule -a $i desktop='^7' state=floating follow=on focus=on; done
 
-# 8 > settings
+## 8 > system (always open system apps on workspace-8)
 bspc rule -a 'VirtualBox Manager' desktop='^8' follow=on focus=on
 bspc rule -a GParted desktop='^8' follow=on focus=on
 declare -a settings=(Lxappearance Lxtask Lxrandr Arandr \
@@ -101,7 +132,7 @@ Xfce4-power-manager-settings)
 for i in ${settings[@]}; do
    bspc rule -a $i desktop='^8' state=floating follow=on focus=on; done
 
-# special rules
+## Always Floating Apps
 declare -a floating=(alacritty-float Pcmanfm Thunar Onboard Yad 'Firefox:Places' \
 Viewnior feh Nm-connection-editor)
 for i in ${floating[@]}; do
@@ -116,7 +147,7 @@ bspc rule -a stalonetray state=floating manage=off
 killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager
 
 # Lauch xsettingsd daemon
-xsettingsd &
+xsettingsd --config="$BSPDIR"/xsettingsd &
 
 # polkit agent
 if [[ ! `pidof xfce-polkit` ]]; then
@@ -124,7 +155,7 @@ if [[ ! `pidof xfce-polkit` ]]; then
 fi
 
 # Lauch keybindings daemon
-sxhkd &
+sxhkd -c "$BSPDIR"/sxhkdrc &
 
 # Enable Super Keys For Menu
 ksuperkey -e 'Super_L=Alt_L|F1' &
@@ -137,7 +168,7 @@ xfce4-power-manager &
 xsetroot -cursor_name left_ptr
 
 # Restore wallpaper
-bash $HOME/.fehbg
+feh --no-fehbg --bg-fill "$CURRENT_WALLPAPER"
 
 # Start mpd
 exec mpd &

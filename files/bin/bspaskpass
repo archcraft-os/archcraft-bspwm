@@ -5,9 +5,10 @@
 
 DIR="$HOME/.config/bspwm"
 
-## Launch dunst daemon
-if [[ `pidof dunst` ]]; then
-	pkill dunst
-fi
-
-dunst -config "$DIR"/dunstrc &
+## rofi text dialog to get password
+rofi -dmenu \
+     -password \
+     -i \
+     -no-fixed-num-lines \
+     -p "User Password: " \
+     -theme "$DIR"/rofi/themes/askpass.rasi

@@ -4,9 +4,7 @@
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
 DIR="$HOME/.config/bspwm"
-
-rofi_command="rofi -theme $DIR/rofi/themes/powermenu.rasi"
-
+rofi_cmd="rofi -theme $DIR/rofi/themes/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
@@ -16,37 +14,49 @@ lock=""
 suspend=""
 logout=""
 
+# Get user confirmation 
+get_confirmation() {
+	rofi -dmenu -i \
+		 -no-fixed-num-lines \
+		 -p "Are You Sure? : " \
+		 -theme "$DIR"/rofi/themes/confirm.rasi
+}
+
+# Show message
+show_msg() {
+	rofi -theme "$DIR"/rofi/themes/askpass.rasi -e "Options  -  yes / y / no / n"
+}
+
 # Variable passed to rofi
 options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
-_msg="Options  -  yes / y / no / n"
 
-chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 2)"
+chosen="$(echo -e "$options" | $rofi_cmd -p "UP - $uptime" -dmenu -selected-row 2)"
 case $chosen in
     $shutdown)
-		ans=$($HOME/.config/bspwm/rofi/bin/confirm)
+		ans=$(get_confirmation)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 			systemctl poweroff
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 			exit
         else
-			rofi -theme ~/.config/bspwm/rofi/themes/askpass.rasi -e "$_msg"
+			show_msg
         fi
         ;;
     $reboot)
-		ans=$($HOME/.config/bspwm/rofi/bin/confirm)
+		ans=$(get_confirmation)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 			systemctl reboot
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 			exit
         else
-			rofi -theme ~/.config/bspwm/rofi/themes/askpass.rasi -e "$_msg"
+			show_msg
         fi
         ;;
     $lock)
         betterlockscreen --lock
         ;;
     $suspend)
-		ans=$($HOME/.config/bspwm/rofi/bin/confirm)
+		ans=$(get_confirmation)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 			mpc -q pause
 			amixer set Master mute
@@ -54,17 +64,17 @@ case $chosen in
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 			exit
         else
-			rofi -theme ~/.config/bspwm/rofi/themes/askpass.rasi -e "$_msg"
+			show_msg
         fi
         ;;
     $logout)
-		ans=$($HOME/.config/bspwm/rofi/bin/confirm)
+		ans=$(get_confirmation)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
 			bspc quit
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
 			exit
         else
-			rofi -theme ~/.config/bspwm/rofi/themes/askpass.rasi -e "$_msg"
+			show_msg
         fi
         ;;
 esac
