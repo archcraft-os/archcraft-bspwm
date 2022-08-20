@@ -171,6 +171,6 @@ alt + shift + {Left,Down,Up,Right}
 
 # Hide/Unhide Window
 super + shift + i
-	winmask		
+	bspwinmask		
 
 ##---------- EOF ----------##
