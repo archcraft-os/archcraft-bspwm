@@ -53,7 +53,7 @@ entry {
     expand:                         true;
     horizontal-align:               0;
     text-color: 					@foreground;
-    placeholder-color:              @FG;
+    placeholder-color:              @foreground;
     placeholder:                    "Search...";
     padding:    					6px 2px 6px 2px;
     border: 						0px 0px 1px 0px;
