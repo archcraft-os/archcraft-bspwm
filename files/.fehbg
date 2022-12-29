@@ -1,0 +1,4 @@
+#!/bin/bash
+
+## Set Default Wallpaper
+feh --bg-fill "$HOME/.config/bspwm/themes/default/wallpaper" 
