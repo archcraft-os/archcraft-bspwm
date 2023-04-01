@@ -2,7 +2,7 @@
 
 pkgname=archcraft-bspwm
 pkgver=3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Bspwm Configurations for Archcraft"
 url="https://github.com/archcraft-os/archcraft-bspwm"
 arch=('any')
@@ -48,6 +48,9 @@ package() {
 	install -Dm 755 bspwmrc   			"$_bspwmdir"/bspwmrc
 	install -Dm 644 dunstrc   			"$_bspwmdir"/dunstrc
 	install -Dm 644 picom.conf   		"$_bspwmdir"/picom.conf
+	install -Dm 644 picom-ibhagwan.conf   	"$_bspwmdir"/picom-ibhagwan.conf
+	install -Dm 644 picom-jonaburg.conf   	"$_bspwmdir"/picom-jonaburg.conf
+	install -Dm 644 picom-original.conf   	"$_bspwmdir"/picom-original.conf
 	install -Dm 644 sxhkdrc				"$_bspwmdir"/sxhkdrc
 	install -Dm 644 xsettingsd			"$_bspwmdir"/xsettingsd
 	install -Dm 755 .fehbg   			"$_skeldir"/.fehbg
