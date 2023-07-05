@@ -1,4 +1,4 @@
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
 ##
 ## Keybindings config for Archcraft's BSPWM
 
@@ -27,8 +27,8 @@ alt + F2
 	rofi_runner
 
 # Rofi Menus/Applets
-super + {m,n,r,s,t,w,x}
-	{rofi_music,nmd,rofi_asroot,rofi_screenshot,rofi_themes,rofi_windows,rofi_powermenu}
+super + {b,m,n,r,s,t,w,x}
+	{rofi_bluetooth,rofi_music,nmd,rofi_asroot,rofi_screenshot,rofi_themes,rofi_windows,rofi_powermenu}
 
 ##---------- Applications ----------##
 

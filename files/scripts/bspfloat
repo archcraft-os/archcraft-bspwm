@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
 
 ## All windows are floating on desktop 8
 FLOATING_DESKTOP_ID=$(bspc query -D -d '^8')

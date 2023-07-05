@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
 ##
 ## Script To Apply Themes
 
@@ -73,6 +73,7 @@ apply_rofi() {
 	sed -i -e "s/STYLE=.*/STYLE=\"$THEME\"/g" \
 		${PATH_BSPWM}/scripts/rofi_askpass \
 		${PATH_BSPWM}/scripts/rofi_asroot \
+		${PATH_BSPWM}/scripts/rofi_bluetooth \
 		${PATH_BSPWM}/scripts/rofi_launcher \
 		${PATH_BSPWM}/scripts/rofi_music \
 		${PATH_BSPWM}/scripts/rofi_powermenu \
