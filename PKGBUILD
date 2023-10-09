@@ -6,7 +6,7 @@ pkgrel=0
 pkgdesc="Bspwm Configurations for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-bspwm"
-license=('custom:DBAD')
+license=('GPL3')
 depends=('bspwm' 'sxhkd' 'feh' 'xsettingsd'
 		'pulsemixer' 'light' 'polybar' 'rofi' 'dunst'
 		'pastel' 'python-pywal'
