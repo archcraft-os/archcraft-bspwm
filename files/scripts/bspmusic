@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
 ##
 ## Run ncmpcpp with alternate config
 
 # bspwm directory
 DIR="$HOME/.config/bspwm"
 
-CONFIG="$DIR/alacritty/alacritty.yml"
+CONFIG="$DIR/alacritty/alacritty.toml"
 
 alacritty --class 'Music,Music' --config-file "$CONFIG" \
-		  -o window.dimensions.columns=109 window.dimensions.lines=22 \
+		  -o window.dimensions.columns=105 window.dimensions.lines=22 \
 		  -e ~/.ncmpcpp/scripts/ncmpcpp-art
-

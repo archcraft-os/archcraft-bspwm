@@ -1,4 +1,4 @@
-## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
 ##
 ## Keybindings config for Archcraft's BSPWM
 
@@ -38,7 +38,7 @@ super + shift + {f,w,e}
 
 # Terminal Apps
 ctrl + alt + {v,r,h}
-	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {vim,ranger,htop}
+	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.toml -e {vim,ranger,htop}
 
 # Color Picker
 super + p
