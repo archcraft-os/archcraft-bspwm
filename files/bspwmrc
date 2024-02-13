@@ -11,6 +11,7 @@ BSPDIR="$HOME/.config/bspwm"
 
 ## Export bspwm/bin dir to PATH
 export PATH="${PATH}:$BSPDIR/scripts"
+export XDG_CURRENT_DESKTOP='bspwm'
 
 ## Run java applications without issues
 export _JAVA_AWT_WM_NONREPARENTING=1
