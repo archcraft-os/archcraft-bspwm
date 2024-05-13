@@ -16,5 +16,5 @@ elif [ "$1" == "--full" ]; then
 			  window.padding.x=30 window.padding.y=30 \
 			  window.opacity=0.95 font.size=14
 else
-	alacritty --config-file "$CONFIG"
+	alacritty --config-file "$CONFIG" ${@}
 fi

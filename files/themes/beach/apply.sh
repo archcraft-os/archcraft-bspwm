@@ -65,6 +65,13 @@ apply_polybar() {
 
 # Rofi --------------------------------------
 apply_rofi() {
+	border_color="`pastel color $accent | pastel format rgb-float | tr -d '[:alpha:]','(',')' | sed 's/ /,/g'`"
+
+	# modify screenshots scripts
+	sed -i -e "s/border=.*/border='$border_color'/g" \
+		${PATH_BSPWM}/scripts/rofi_screenshot \
+		${PATH_BSPWM}/scripts/bspscreenshot
+
 	# modify rofi scripts
 	sed -i -e "s/STYLE=.*/STYLE=\"$THEME\"/g" \
 		${PATH_BSPWM}/scripts/rofi_askpass \
