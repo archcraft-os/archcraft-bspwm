@@ -16,6 +16,10 @@ super + shift + Return
 super + alt + Return
 	bspterm --full
 
+# Terminal (kitty)
+ctrl + alt + t
+    bspkitty
+
 ##---------- Rofi Launcher & Menus ----------##
 
 # Rofi App Launcher
