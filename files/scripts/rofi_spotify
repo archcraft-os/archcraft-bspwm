@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2025 Aditya Shakya <adi1090x@gmail.com>
+
+# Import Current Theme
+DIR="$HOME/.config/bspwm"
+STYLE="default"
+RASI="$DIR/themes/$STYLE/rofi/music.rasi"
+
+# Theme Elements
+pc_cmd='playerctl -p spotify'
+spotify_status="`$pc_cmd status 2>/dev/null`"
+
+if [[ "$spotify_status" = 'Playing' ]]; then
+	if [[ "`$pc_cmd metadata title`" == 'Advertisement' ]]; then
+		prompt='AD'
+		mesg='Stupid Ads!'
+	else
+		prompt="`$pc_cmd metadata artist`"
+		mesg="Playing :: `$pc_cmd metadata title`"
+	fi
+elif [[ "$spotify_status" = 'Paused' ]]; then
+		prompt="`$pc_cmd metadata artist`"
+		mesg="Paused :: `$pc_cmd metadata title`"
+else
+	prompt='Offline'
+	mesg='Spotify Offline!'
+fi
+
+# Options
+layout=`cat ${RASI} | grep 'USE_ICON' | cut -d'=' -f2`
+if [[ "$layout" == 'NO' ]]; then
+	if [[ ${spotify_status} == 'Playing' ]]; then
+		option_1=' Pause'
+	else
+		option_1=' Play'
+	fi
+	option_2=' Stop'
+	option_3=' Previous'
+	option_4=' Next'
+	option_5=' Repeat'
+	option_6=' Random'
+else
+	if [[ ${spotify_status} == 'Playing' ]]; then
+		option_1=''
+	else
+		option_1=''
+	fi
+	option_2=''
+	option_3=''
+	option_4=''
+	option_5=''
+	option_6=''
+fi
+
+# Toggle Actions
+active=''
+urgent=''
+# Repeat
+if [[ "`$pc_cmd loop`" == 'Playlist' ]]; then
+    active='-a 4'
+elif [[ "`$pc_cmd loop`" == 'Track' ]]; then
+    active='-a 4'
+elif [[ "`$pc_cmd loop`" == 'None' ]]; then
+    urgent='-u 4'
+else
+    option_5=''
+fi
+# Random
+if [[ "`$pc_cmd shuffle`" == 'On' ]]; then
+    [ -n "$active" ] && active+=",5" || active="-a 5"
+elif [[ "`$pc_cmd shuffle`" == 'Off' ]]; then
+    [ -n "$urgent" ] && urgent+=",5" || urgent="-u 5"
+else
+    option_6=''
+fi
+
+# Rofi CMD
+rofi_cmd() {
+	rofi -dmenu \
+		-p "$prompt" \
+		-mesg "$mesg" \
+		${active} ${urgent} \
+		-markup-rows \
+		-theme ${RASI}
+}
+
+# Pass variables to rofi dmenu
+run_rofi() {
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6" | rofi_cmd
+}
+
+# Execute Command
+run_cmd() {
+	if [[ "$1" == '--opt1' ]]; then
+		${pc_cmd} play-pause
+	elif [[ "$1" == '--opt2' ]]; then
+		${pc_cmd} stop
+	elif [[ "$1" == '--opt3' ]]; then
+		${pc_cmd} previous
+	elif [[ "$1" == '--opt4' ]]; then
+		${pc_cmd} next
+	elif [[ "$1" == '--opt5' ]]; then
+		if [[ "`$pc_cmd loop`" == 'None' ]]; then
+			${pc_cmd} loop playlist
+		else
+			${pc_cmd} loop none
+		fi
+	elif [[ "$1" == '--opt6' ]]; then
+		${pc_cmd} shuffle toggle
+	fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+    $option_1)
+		run_cmd --opt1
+        ;;
+    $option_2)
+		run_cmd --opt2
+        ;;
+    $option_3)
+		run_cmd --opt3
+        ;;
+    $option_4)
+		run_cmd --opt4
+        ;;
+    $option_5)
+		run_cmd --opt5
+        ;;
+    $option_6)
+		run_cmd --opt6
+        ;;
+esac

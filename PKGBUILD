@@ -1,8 +1,8 @@
 # Maintainer: Aditya Shakya <adi1090x@gmail.com>
 
 pkgname=archcraft-bspwm
-pkgver=6.0
-pkgrel=9
+pkgver=7.0
+pkgrel=0
 pkgdesc="Bspwm Configurations for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-bspwm"
