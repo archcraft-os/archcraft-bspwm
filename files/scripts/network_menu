@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2026 Aditya Shakya <adi1090x@gmail.com>
+
+# bspwm directory
+DIR="$HOME/.config/bspwm"
+
+# Run networkmanager_dmenu with bspwm config
+networkmanager_dmenu --config "$DIR"/themes/networkmenu_config.ini

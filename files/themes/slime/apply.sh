@@ -23,7 +23,7 @@ PATH_ROFI="$PATH_BSPWM/themes/$THEME/rofi"
 
 ## Wallpaper ---------------------------------
 apply_wallpaper() {
-	feh --bg-fill "$wallpaper"
+	sed -i -e "s#WALLPAPER=.*#WALLPAPER='$wallpaper'#g" ${PATH_BSPWM}/themes/wallpaper.sh
 }
 
 ## Polybar -----------------------------------
@@ -108,8 +108,9 @@ apply_rofi() {
 
 # Network Menu ------------------------------
 apply_netmenu() {
-	if [[ -f "$PATH_CONF"/networkmanager-dmenu/nmd.ini ]]; then
-		sed -i -e "s#dmenu_command = .*#dmenu_command = rofi -dmenu -theme $PATH_ROFI/networkmenu.rasi#g" ${PATH_CONF}/networkmanager-dmenu/nmd.ini
+	nm_cfg="$PATH_BSPWM/themes/networkmenu_config.ini"
+	if [[ -f "$nm_cfg" ]]; then
+		sed -i -e "s#dmenu_command = .*#dmenu_command = rofi -dmenu -theme $PATH_ROFI/networkmenu.rasi#g" "$nm_cfg"
 	fi
 }
 

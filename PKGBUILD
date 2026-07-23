@@ -2,12 +2,12 @@
 
 pkgname=archcraft-bspwm
 pkgver=7.0
-pkgrel=0
+pkgrel=6
 pkgdesc="Bspwm Configurations for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-bspwm"
 license=('GPL3')
-depends=('bspwm' 'sxhkd' 'feh' 'xsettingsd'
+depends=('bspwm' 'sxhkd' 'hsetroot' 'xsettingsd'
 		'pulsemixer' 'light' 'polybar' 'rofi' 'dunst'
 		'pastel' 'python-pywal'
 )
@@ -40,14 +40,8 @@ prepare() {
 }
 
 package() {
-	local _skeldir="$pkgdir"/etc/skel
-	local _configdir="$_skeldir"/.config
-	local _wmdir="$_configdir"/bspwm
-
-	mkdir -p "$_skeldir" && mkdir -p "$_configdir" && mkdir -p "$_wmdir"
-
-	# Copy networkmanager config
-	cp -r "$srcdir"/networkmanager-dmenu	"$_configdir"
+	local _wmdir="$pkgdir"/etc/skel/.config/bspwm
+	mkdir -p "$_wmdir"
 
 	# Copy window manager configs
 	cp -r "$srcdir"/alacritty 				"$_wmdir"
@@ -60,11 +54,10 @@ package() {
 	install -Dm 644 picom.conf   			"$_wmdir"/picom.conf
 	install -Dm 644 sxhkdrc					"$_wmdir"/sxhkdrc
 	install -Dm 644 xsettingsd				"$_wmdir"/xsettingsd
-	install -Dm 755 .fehbg   				"$_skeldir"/.fehbg
 
 	# Make scripts executable
 	chmod +x "$_wmdir"/scripts/*
-	chmod +x "$_wmdir"/themes/polybar.sh
+	chmod +x "$_wmdir"/themes/{polybar,wallpaper}.sh
 
 	apply_files=(`find ${_wmdir}/themes -type f | grep apply.sh`)
 	for _afile in "${apply_files[@]}"; do

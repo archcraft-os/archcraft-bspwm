@@ -32,7 +32,7 @@ alt + F2
 
 # Rofi Menus/Applets
 super + {b,m,n,r,s,t,w,x}
-	{rofi_bluetooth,rofi_music,nmd,rofi_asroot,rofi_screenshot,rofi_themes,rofi_windows,rofi_powermenu}
+	{rofi_bluetooth,rofi_music,network_menu,rofi_asroot,rofi_screenshot,rofi_themes,rofi_windows,rofi_powermenu}
 
 ##---------- Applications ----------##
 
