@@ -13,6 +13,9 @@ BSPDIR="$HOME/.config/bspwm"
 export PATH="${PATH}:$BSPDIR/scripts"
 export XDG_CURRENT_DESKTOP='bspwm'
 
+## Disable CSD
+export LD_PRELOAD='/usr/lib/libgtk-nocsd.so'
+
 ## Run java applications without issues
 export _JAVA_AWT_WM_NONREPARENTING=1
 #wmname LG3D
@@ -144,7 +147,7 @@ for i in ${settings[@]}; do
 
 ## Always Floating Apps
 declare -a floating=(alacritty-float kitty-float Pcmanfm Thunar Onboard Yad 'Firefox:Places' \
-Viewnior feh Nm-connection-editor calamares Calamares)
+Viewnior feh Nm-connection-editor Catfish calamares Calamares archcraft-help archcraft-welcome)
 for i in ${floating[@]}; do
    bspc rule -a $i state=floating follow=on focus=on; done
 
@@ -190,5 +193,5 @@ bspdunst
 bspfloat &
 
 ## Welcome-App-Run-Once
-archcraft-welcome &
+/usr/share/archcraft/welcome/run.py &
 sed -i -e '/## Welcome-App-Run-Once/Q' "$HOME"/.config/bspwm/bspwmrc
