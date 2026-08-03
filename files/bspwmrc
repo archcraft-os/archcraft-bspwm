@@ -13,9 +13,6 @@ BSPDIR="$HOME/.config/bspwm"
 export PATH="${PATH}:$BSPDIR/scripts"
 export XDG_CURRENT_DESKTOP='bspwm'
 
-## Disable CSD
-export LD_PRELOAD='/usr/lib/libgtk-nocsd.so'
-
 ## Run java applications without issues
 export _JAVA_AWT_WM_NONREPARENTING=1
 #wmname LG3D
